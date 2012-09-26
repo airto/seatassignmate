@@ -1,0 +1,353 @@
+html * { font-size: 100.01%; }
+body {
+	background-color:#000000;
+	color:#333;
+	font-family:"Verdana", Arial, Helvetica, sans-serif;
+	font-size:75.00%;
+	font-weight:normal;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+a { color:#F60; background:transparent; text-decoration:none; }
+a:visited  { color:#CCCCCC; }
+a:focus,
+a:hover,
+a:active { color:#60d832; text-decoration:underline; }
+li{ list-style:none; }
+/* nav */
+/*---------------*/
+
+#nav
+{
+	margin-left:20px;
+}
+#nav ul{
+	display: inline;
+	}
+#nav ul li{
+	display: inline;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	
+	}
+	
+	
+#nav li a {
+	display: block;
+	padding: 11px 30px;	
+	float: left;
+}
+
+#nav ul li a:link, #nav ul li a:visited {
+	color:#FFFFFF;
+}
+
+#nav ul li a:hover {
+background-color:#FFCC00;
+text-decoration:none;
+color:#000000;
+
+}
+/* header */
+
+#header {
+    background-color: black;
+    top: 0;
+    height: 40px;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    z-iindex:9999;
+}
+
+/* footer */
+#footer {
+    background-color: black;
+    bottom: 0;
+    height: 40px;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    z-iindex:9999;
+}
+
+  hr {
+    color: #fff;
+    background:transparent;
+    margin: 0 0 0.5em 0;
+    padding: 0 0 0.5em 0;
+    border:0;
+    border-bottom: 1px #eee solid;
+  }
+  
+  p {font-size:11px;}
+
+
+  h1 {
+	font-family: "Arial", "Times New Roman", Times, serif;
+	font-size:230%;
+	font-weight:bold;
+	color:#ffffff;
+	margin: 20px;
+	text-align: center;
+  }
+   h2 {
+font-family: "Arial", "Times New Roman", Times, serif;      
+	font-size:12px;
+    font-weight:bold;
+    color:#ffffff;
+    margin: 0 0 0 40px;
+  }
+ 
+    h3 {
+font-family: "Arial", "Times New Roman", Times, serif;      
+	font-size:12px;
+    font-weight:bold;
+    color:#ffffff;
+    margin: 0 0 0 20px;
+  }
+ 
+
+
+/* nav button 1 */
+.b1{
+        width: 124px;
+        height: 42px;
+        background: url(../images/b1.gif) top left no-repeat;
+        display: block;
+        margin:5px;	
+        }
+
+.b1:hover{
+        background-position: bottom left;
+        }
+		
+
+/* nav button 2 */
+.b2{
+        width: 124px;
+        height: 42px;
+        background: url(../images/b2.gif) top left no-repeat;
+        display: block;
+        margin:5px;	
+        }
+
+.b2:hover{
+        background-position: bottom left;
+        }
+		
+/* nav button 3 */
+.b3{
+        width: 124px;
+        height: 42px;
+        background: url(../images/b3.gif) top left no-repeat;
+        display: block;
+        margin:5px;	
+        }
+
+.b3:hover{
+        background-position: bottom left;
+        }
+		
+/* nav button 4 */
+.b4{
+        width: 124px;
+        height: 42px;
+        background: url(../images/b4.gif) top left no-repeat;
+        display: block;
+        margin:5px;	
+        }
+
+.b4:hover{
+        background-position: bottom left;
+        }
+		
+		
+				
+.border1 {border:#999 4px solid; margin:3px;}
+.border2 {margin-top:30px;}
+/*****************9926012834*/
+.title{background:url(../images/left1.jpg) no-repeat; color:#fff; font-size:15px; line-height:56px; height:54px; display:block; padding-left: 23px; width:285px;
+font-size:20px;}
+.fb{ background:url(../images/button-fb1.gif) no-repeat; padding-left:53px; color:#fff; font-size:15px; font-weight:bold; line-height:56px; display:block; height:57px; width:256px;}
+.gray{background:url(../images/button-black.gif) no-repeat; padding-left:12px; color:#fff; font-size:15px; font-weight:bold; line-height:56px; display:block; height:54px; width:295px;}
+.glossymenu{
+	
+margin: 5px 0;
+padding: 0;
+width: 310px; /*width of menu*/
+border: 1px solid #9A9A9A;
+border-bottom-width: 0;
+}
+.submenuheader{background:url(../images/accordianbg.png) repeat-x; display: block; height: 27px; width: 300px; padding:7px 0 4px 10px; color: black;}
+.glossymenu a.menuitem{
+background: url(glossyback.gif) repeat-x bottom left;
+font: bold 15px "Lucida Grande", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+color: black;
+display: block;
+position: relative; /*To help in the anchoring of the ".statusicon" icon image*/
+width: auto;
+padding: 0px 0;
+padding-left: 00px;
+text-decoration: none;
+}
+
+
+.glossymenu a.menuitem:visited, .glossymenu .menuitem:active{
+color: white;
+}
+
+.glossymenu a.menuitem .statusicon{ /*CSS for icon image that gets dynamically added to headers*/
+position: absolute;
+top: 5px;
+right: 5px;
+border: none;
+}
+
+.glossymenu a.menuitem:hover{
+background-image: url(glossyback2.gif);
+}
+
+.glossymenu div.submenu{ /*DIV that contains each sub menu*/
+background: white;
+}
+
+.glossymenu div.submenu ul{ /*UL of each sub menu*/
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+
+.glossymenu div.submenu ul li{
+border-bottom: 1px solid gray;
+}
+
+.glossymenu div.submenu ul li a{
+display: block;
+font: normal 13px "Lucida Grande", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+color: black;
+text-decoration: none;
+padding: 2px 0;
+padding-left: 10px;
+}
+
+.glossymenu div.submenu ul li a:hover{
+background: #DFDCCB;
+colorz: white;
+}
+
+.box{ background:url(../images/fbbox.png) repeat-x; display:block; height:47px; width:100%; color:#657fb2; float:left;}
+.fleft{float:left;}
+.click {
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 46px;
+}
+.name {
+    overflow: auto;
+    padding-left: 10px;
+    height:303px;
+}
+.name img{margin-right:10px; border:1px solid #ccc;}
+.name a{font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 46px; color:#657FB2;}
+.map {
+    display: block;
+    float: left;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-left: 39px;
+    padding-top: 5px;
+    width: 100%;
+}
+.plane-container{ background:url(../images/plane_bg.jpg) no-repeat; height:1498px; width:168px; margin:0px auto; padding:341px 116px 0px; }
+.left-class{ width:75px; float:left; }
+.right-class{ width:75px; float:right; }
+.plane-container ul{ float:left; }
+.plane-container ul li { float:left; position:relative; }
+.plane-container ul li a{ text-indent:-9999em; float:left; overflow:hidden;}
+.plane-container .left-class ul.first-class{ padding-left:10px; width:52px; }
+.plane-container .right-class ul.first-class{ width:52px; float:right; padding-right:10px; }
+.plane-container ul.first-class li{ padding:8px 0px; }
+.plane-container .left-class ul.sec-class{ width:76px; padding:24px 0px 0px; }
+.plane-container .right-class ul.sec-class{ width:76px; padding:24px 0px 0px; float:right; }
+.plane-container ul.sec-class li{ padding:5px 0px; }
+.plane-container ul.sec-class li a{ width:25px; height:28px; }
+.plane-container ul.first-class li a{ height:34px; width:26px; }
+.plane-container .left-class ul.third-class{ width:76px; padding:20px 0px 0px; }
+.plane-container .right-class ul.third-class{ float:right; width:76px; padding:20px 0px 0px; }
+.plane-container ul.third-class li{ padding:4px 0px; }
+.plane-container ul.third-class li a{ width:25px; height:28px; }
+.plane-container .chair-light-box{ display:none; position:absolute; left:17px; top:-192px; background:#FFF; border:1px solid #d6d6d8; width:210px;z-index:999; }
+/*.plane-container ul li:hover .chair-light-box{ display:block; }*/
+.plane-container table td span:hover .userTip{ display:block; }
+.plane-container table td span:hover .chair-light-box{ display:block; }
+.plane-container .chair-light-box ol{margin:0;padding:0;}
+.plane-container .chair-light-box ol li{ width:196px; padding:0px 7px; }
+.plane-container .chair-light-box ol li.black-heading{ background:#3f3f3f; line-height:18px; font-size:12px; color:#fff; font-weight:bold; border-bottom:1px solid #d6d6d8; padding-bottom:3px; }
+.plane-container .chair-light-box ol li.sub-heading{ text-align:right; line-height:18px; font-size:12px; color:#4372ea; font-weight:bold; border-bottom:1px solid #d6d6d8; padding-bottom:3px;}
+.plane-container .chair-light-box ol li.img-row{ text-align:center; }
+.plane-container .chair-light-box ol li.img-row img{ display:inline-block; margin:10px 0px; }
+.plane-container td span.Economy {
+    /*background: url("../images/economic_seat.jpg") no-repeat scroll 0 0 transparent;*/
+    overflow: hidden;
+    /*text-indent: -9999em;*/
+}
+.plane-container td span.Business {
+    /*background: url("../images/business_seat.jpg") no-repeat scroll 0 0 transparent;*/
+    overflow: hidden;
+    /*text-indent: -9999em;*/
+}
+ /* tooltip styling */
+.tooltip {
+    display:none;
+    background:transparent url("../images/black_arrow.png");
+    font-size:12px;
+    height:70px;
+    width:160px;
+    padding:25px;
+    color:#eee;
+  }
+  
+  div.centered{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:45%;
+    width:150px;
+    padding:5px;
+    border : 1px solid blue;
+    border-radius:4px;
+    background-color:#82A1D0;
+}
+/*Seat map passenger tooltip*/
+.passengerDetial {
+    background-color:#fff;
+    border: 2px solid #313131;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    margin: 0 auto;
+    padding:5px;
+    width: 180px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.passengerImg{float:left; width:50px;}
+.passengerImg > img{border:1px solid #e6e6e6;}
+.passengerImg span{font-size:10px; background:#005F87; color:#fff; padding:2px; margin-top:2px; float:left;}
+.passengerImg a{float:left; margin-left:2px; margin-top:2px;}
+.passengerImg a.last{margin-right:0;}
+.passengerRight{float:left; width:126px;padding-left: 4px;}	
+.passengerRight h5{font-weight:normal; font-size:11px; color:#6279AE; margin:0px; padding:0px;}
+.passengerRight span{width:100%; color:#7E7E7E; font-size:9px; display:inline-block;}
+.passengerRight sub{color:#7E7E7E; font-size:9px;  text-transform:uppercase;}
+.passengerRight p{display:inline-block; width:100%; padding:3px 0 0 0; font-size:8px; color:#7e7e7e; border-top:1px solid #e6e6e6; margin-top:3px;}
+.passengerRight p a{color:#468093;}

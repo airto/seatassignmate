@@ -1,0 +1,97 @@
+<style>
+   /* a .label element inside tooltip */
+  .tooltip .label {
+    color:yellow;
+    width:35px;
+  }
+ 
+  .tooltip a {
+    color:#ad4;
+    font-size:11px;
+    font-weight:bold;
+  }
+  .seat{
+    color:#fff;
+  }
+  .userTip{
+    display:none;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    height: 75px;
+    left: 18px;
+    position: absolute;
+    top: -73px;
+    width: 150px;
+    z-index: 9999;
+  }
+</style>
+<?php
+$tooltips = '<div class="userTip">
+                <table>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+            </div>';
+?>
+<div class="plane-container">
+<input type="hidden" name="flightNumber" id="flightNumber" value="<?php echo $this->flightNumber; ?>">
+<input type="hidden" value="<?php echo $this->departure; ?>" id="flightdeparture" name="flightdeparture">
+	<?php
+                        if(isset($this->seats['SeatRow'])){
+                        ?>
+                        <table id="tseats" style="overflow: auto;height: 560px;">
+                        <?php
+                            foreach($this->seats['SeatRow'] as $key=>$seatRow){
+                                ?>
+                                <tr>
+                                <?php
+                                //echo '<pre>';print_r($this->seats);die;
+                                foreach($seatRow['Seats'] as $rowFacilityChars){
+                                    ?><td style="border:0px;"><?php
+                                    if($rowFacilityChars['Facility']['Type'] == 'Seat'){
+                                      if($rowFacilityChars['Facility']['Availability']=='Occupied'){
+                                         $seatcolor = '#7753F3';
+                                      } else if($rowFacilityChars['Facility']['Availability']=='Reserved'){
+                                        $seatcolor = '#00FF00';
+                                      } else {
+                                        $seatcolor = '#F3F003';
+                                      }
+                                        $seat = '<span id="'.$rowFacilityChars['Facility']['SeatCode'].'" class="'.$this->seats['CabinClass'].'" style="font-size:8px;
+    position: relative;"><a style="background-color:'.$seatcolor.';" class="seat" href="javascript:void(0);" onclick="javascript:getPrivacy(\''.$this->flightNumber.'\',\''.$rowFacilityChars['Facility']['SeatCode'].'\');" title="Seat '.$rowFacilityChars['Facility']['SeatCode'].' in Row '.$seatRow['Row'].' is '.$rowFacilityChars['Facility']['Availability'].'">'.$rowFacilityChars['Facility']['SeatCode'].'</a>';
+                        if(isset($this->seatOccupier["{$rowFacilityChars['Facility']['SeatCode']}"])){
+                            $seat .= $this->seatOccupier["{$rowFacilityChars['Facility']['SeatCode']}"];
+                        } else  {
+                            $seat .= '<div class="chair-light-box">
+                                            <ol>
+                                            <li class="black-heading">'.$this->seats['CabinClass'].' Class</li>
+                                            <li class="sub-heading">Seat#:'.$rowFacilityChars['Facility']['SeatCode'].', '.$rowFacilityChars['Facility']['Availability'].' seat</li>
+                                            <li class="img-row"><img src="'.$this->baseUrl().'/public/images/frist_class_chair.jpg"></li>
+                                        </ol>
+                                    </div>';
+                        }
+                        $seat .= '</span>';
+                        echo $seat;
+                                    } else if($rowFacilityChars['Facility']['Type'] == 'Aisle'){
+                                        echo '<span style="background:#fff">&nbsp;&nbsp;<span>';
+                                    }
+                                    ?></td><?php
+                                }
+                                ?>
+                                </tr>
+                                <?php
+                            }
+                        ?>
+                        </table>
+                        <?php
+                        } 
+                      ?>
+</div>
+
+<script>
+$(document).ready(function(){
+  //$("#tseats a.seat").tooltip({ effect: 'slide'});
+//$("#tseats a.seat").hover(function(){$('.chair-light-box').show();},function(){$('.chair-light-box').hide();});
+});
+</script>

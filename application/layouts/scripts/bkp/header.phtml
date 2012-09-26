@@ -1,0 +1,121 @@
+<?php
+ $cache_expire = 60*60*24*365;
+ header("Pragma: public");
+ header("Cache-Control: max-age=".$cache_expire);
+ header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$cache_expire) . ' GMT');
+?>
+<div id="fb-root"></div>
+<script>
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '<?php echo FB_APP_ID; ?>',
+      channelUrl : '<?php echo SITE_URL.$this->baseUrl().'/fb_channel.html'; ?>',
+      status     : true,
+      cookie     : true,
+      oauth: true,
+      xfbml      : true
+    });
+    var fblogin;
+    var fblogout;
+    function updateLogin(response) {
+	fblogin = document.getElementById('fb-login');
+	fblogout = document.getElementById('fb-logout');
+	if (response.authResponse) {
+	    //user is already logged in and connected
+	    if(fblogin != null){
+		fblogin.onclick = function() {
+		    login(response);
+		}
+	    }
+	} else {
+	    //user is not connected to your app or logged out
+	    fblogin.onclick = function() {
+		FB.login(function(response) {
+		    login(response);
+		}, {scope:'email, user_photos, user_education_history, user_interests, user_work_history, user_location'});  	
+	    }
+	}
+    }
+    function login(response){
+	if (response.authResponse) {
+	    FB.api('/me', function(info) {
+		$('.centered').show();
+		FB.api({
+		    method: 'fql.query',
+		    query: 'select pic_square from user where uid=me()'
+		}, function(res1){
+		    info.pic_square = res1[0].pic_square;
+		    // Get Login into Site
+		    //console.log(info);
+		    $.ajax({
+			type:'POST',
+			url:'<?php echo SITE_URL.$this->baseUrl().'/fblogin';?>',
+			data:info,
+			dataType:'json',
+			beforeSend:function(){$(fblogin).attr('disabled',true);},
+			success:function(res){
+			    if(res.msg == 'success'){
+				$('.centered').hide();
+				window.location = '<?php echo SITE_URL.$this->baseUrl().'/search/flights'; ?>';
+			    }
+			}
+		    });
+		});
+	    });	   
+	}
+    }
+    // run once with current status and whenever the status changes
+    FB.getLoginStatus(updateLogin);
+    FB.Event.subscribe('auth.statusChange', updateLogin);
+};
+    function fblogout() {
+	FB.logout(function(response) {
+	    window.location = '<?php echo SITE_URL.$this->baseUrl().'/logout'; ?>';
+	});
+	window.location = '<?php echo SITE_URL.$this->baseUrl().'/logout'; ?>';
+    }
+// Load the SDK Asynchronously
+    (function(d){
+       var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement('script'); js.id = id; js.async = true;
+       js.src = "//connect.facebook.net/en_US/all.js";
+       ref.parentNode.insertBefore(js, ref);
+     }(document));
+</script>
+<div id="header"></div>
+<?php
+    $auth = new Zend_Session_Namespace();
+    if(isset($auth->activeUser) && $auth->activeUser > 0){
+	
+	?>
+<a href="javascript:void(0);" onclick="javascript:fblogout();" id="fb-logout">logout</a>
+<?php
+    }
+
+//else {
+/*
+?>
+<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+    api_key: '<?php echo LK_API_KEY; ?>'
+    authentication: true
+    function onLinkedInLoad() {
+	IN.Event.on(IN, "auth", onLinkedInAuth);
+    }
+    function onLinkedInAuth() {
+	IN.API.Profile("me").result(displayProfiles);
+    }
+</script>
+    <script type="IN/Login">
+Hello, <?js= firstName ?> <?js= lastName ?>
+<form action="">
+<p>Your Name: <input type="text" name="name" value="<?js= firstName ?> <?js= lastName ?>" /></p>
+<p>Your Password: <input type="password" name="password" /></p>
+<input type="hidden" name="linkedin-id" value="<?js= id ?>" />
+<input type="submit" name="submit" value="Sign Up"/>
+</form>
+</script>
+<?php
+*/
+  //  }
+?>

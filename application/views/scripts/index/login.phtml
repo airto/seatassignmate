@@ -1,0 +1,59 @@
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 100%;
+}
+body {
+	background-image: url();
+	background-repeat: repeat-x;
+	background-color: #2e4b89;
+}
+.style2 {
+	font-size: large;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+-->
+</style>
+
+<table width="953" border="0" align="center" cellpadding="0" cellspacing="0" class="border2">
+  <tr>
+    <td height="105" align="center" valign="middle"><p class="style2"><img src="<?php echo $this->baseUrl(); ?>/public/images/title.png" width="900" height="63"></p>    </td>
+  </tr>
+  <tr>
+    <td height="478" align="center" valign="middle">
+    <form method="post" action="<?php echo $this->baseUrl().'/login';?>">
+    <label><br>
+      </label>
+      <table width="550" height="350" border="0" cellpadding="0" cellspacing="0">
+        <?php if($this->message){ ?><tr><td align="center"><?php echo $this->message; ?></td></tr><?php } ?>
+	<tr>
+	
+          <td height="371" background="<?php echo $this->baseUrl(); ?>/public/images/login.png">
+	  <table width="61%" border="0" align="center" cellpadding="0" cellspacing="0">
+             
+	    <tr>
+              <td height="105" colspan="2">&nbsp;</td>
+              </tr>
+            
+            <tr>
+              <td width="30%" height="36">&nbsp;</td>
+              <td width="70%" align="left" valign="middle"><input name="email" type="text" size="25" style="color:#999999; border:#eef0f1 0px solid; background-color:transparent;"></td>
+            </tr>
+            <tr>
+              <td height="26">&nbsp;</td>
+              <td align="left" valign="middle"><input name="password" type="password" size="25" style="color:#999999; border:#eef0f1 0px solid; background-color:transparent;"></td>
+            </tr>
+            <tr>
+              <td height="18" colspan="2">&nbsp;</td>
+              </tr>
+            <tr>
+              <td height="47" colspan="2" align="center"><input type="image" src="<?php echo $this->baseUrl(); ?>/public/images/login-submit.png" height="28" border="0"></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table></td>
+    </form>
+  </tr>
+</table>
+<p>&nbsp;</p>

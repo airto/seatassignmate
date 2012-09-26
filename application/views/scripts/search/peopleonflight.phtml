@@ -1,0 +1,18 @@
+<span class="box">
+        <img src="<?php echo $this->baseUrl(); ?>/public/images/f.png" width="22" height="22" hspace="9" vspace="12" class="fleft"><span class="click">See who's sitting where</span>
+                            <span class="map">Click a name to show on a map</span>
+        <div class="name">
+<?php
+          if(count($this->records)>0){
+                 foreach($this->records as $row){
+			   ?>
+			   <p>
+                           <a href="javascript:void(0);" onclick="seatMap('<?php echo $row->seatNumber; ?>',event);"><img src="<?php echo $this->baseUrl(); ?>/public/images/users/<?php echo (($row->pic)?$row->pic:'no_pic.jpg'); ?>" width="50" class="fleft"><?php echo ucwords($row->firstName.' '.$row->lastName); ?></a></p>
+			   <?php
+ 		 }
+	  } else {
+			   echo '<p>No record found</p>';
+	  }
+?>
+         </div>
+</span>

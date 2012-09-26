@@ -1,0 +1,63 @@
+<?php
+  $res = json_decode($this->response);
+  if(isset($res->success) && $res->success){
+?>
+<script type="text/javascript">
+    var map;
+    var response = <?php echo $this->response; ?>;
+    //console.log(response.propertyList);
+    
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(<?php echo $this->centerLat; ?>,<?php echo $this->centerLong; ?>);
+        var mapOptions = {
+          zoom: 9,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+      
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        if(response.success == true){
+          // Add 5 markers to the map at random locations.
+          for (var i = 0; i < response.propertyList.length; i++) {
+            var location = new google.maps.LatLng(response.propertyList[i].latitude,response.propertyList[i].longitude);
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            var j = i + 1;
+            marker.setTitle(response.propertyList[i].priceTotalAmount.currencyCode+' '+Math.ceil(response.propertyList[i].priceTotalAmount.price));
+            //marker.setShape(rec);
+            attachSecretMessage(marker, i);
+          }
+        }
+    }
+    
+    // The five markers show a secret message when clicked
+    // but that message is not within the marker's instance data.
+    function attachSecretMessage(marker, number) {
+      var message = response.propertyList[number].propertyName;
+      var thumb = response.propertyList[number].thumbnailImageUrl;
+      var priceTotalAmount = response.propertyList[number].priceTotalAmount;
+      var infowindow = new google.maps.InfoWindow(
+          { content: '<b>'+message+'</b><br><p><span><img src="'+thumb+'"></span><span><b>'+priceTotalAmount.currencyCode+' '+priceTotalAmount.price+'</b><span></p>',
+            size: new google.maps.Size(50,50)
+          });
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+      });
+    }
+    
+      function loadScript() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://maps.googleapis.com/maps/api/js?key=<?php echo GMAP_KEY; ?>&sensor=false&callback=initialize";
+        document.body.appendChild(script);
+      }
+      window.onload = loadScript;
+    </script>
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+<?php
+  } else {
+    echo '<span>Sorry !! No record found !</span>';
+  }
+?>

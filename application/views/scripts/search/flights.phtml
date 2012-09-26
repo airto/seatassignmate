@@ -1,0 +1,264 @@
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+  <tr>
+    <td height="493" align="center" valign="middle">
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="33%" height="38" align="left" bgcolor="#7E98D1"><a href="#"></a></td>
+          <td width="33%" align="center" bgcolor="#7E98D1"><h1>SeatAssignMate </h1></td>
+          <td width="33%" align="right" bgcolor="#7E98D1"><a href="#"></a></td>
+        </tr>
+      </table>
+      <table width="970" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td colspan="3" align="left" valign="top">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="230" align="left" valign="top">
+          <?php echo $this->partial('include/left_panel.phtml','default',array());?>
+          </td>
+          <td width="250" align="left" valign="top">
+            <table width="250" height="570" border="0" cellpadding="0" cellspacing="0" class="border1">
+              <tr>
+                <form action="">
+                  <td height="61" align="center" bgcolor="#FFFFFF"><input name="textfield" type="text" size="25">
+                    &nbsp; 
+                      <label>
+                      <input name="OK" type="submit" id="OK" value="OK" >
+                      </label>                  </td>
+                </form>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">
+                  <!--<img src="<?php echo $this->baseUrl(); ?>/public/images/middle-step2.jpg" width="334">-->
+                  <div class="glossymenu">
+
+                    <a class="menuitem" href="#" ><span class="submenuheader">By Enter eticket number</span></a>
+                    <div class="submenu">
+                    <form method="post" action="<?php echo $this->baseUrl().'/search/flightdetails';?>">
+                            <table>
+                              <tr><th colspan="2">Get Flight Details</th></tr>
+                              <tr><td>Ticket Number:</td><td><input disbaled="true" id="ticketNumber" name="ticketNumber" type="text" value="ZL2RNJ"></td></tr>
+                              <tr><td colspan="2" align="right"><input type="button" id="tckBtn" value="Go"></td></tr>
+                            </table>
+                    </form>
+                    </div>
+                    
+                    <a class="menuitem" href="#"><span class="submenuheader">By PNR record locator</span></a>
+                    <div class="submenu">
+                    <form method="post" id="search2" action="<?php echo $this->baseUrl().'/search/pnrdetails';?>">
+                            <table>
+                              <tr><th colspan="2">PNR Search</th></tr>
+                              <tr><td>PNR Number:</td><td><input id="pnrNumber" name="pnrNumber" type="text" value="ZLDF7K"></td></tr>
+                              <tr><td colspan="2" align="right"><input type="button" id="pnrBtn" value="Go"></td></tr>
+                            </table>
+                    </form>
+                    </div>
+                    
+                    <a class="menuitem" href="#"><span class="submenuheader">By Trip It</span></a>
+                    <div class="submenu">
+                      <form method="post" id="search" action="<?php echo $this->baseUrl().'/search/seatsinflight';?>">
+                              <table>
+                                <tr><th colspan="2">Flight Search</th></tr>
+                                <tr><td>Flight Number:</td><td><input id="flightNumber" name="flightNumber" type="text" value="1865"></td></tr>
+                                <tr><td>From:</td><td><input id="Source" name="Source" type="text" value="New York City(JFK)"></td></tr>
+                                <tr><td>To:</td><td><input id="Dest" name="Dest" type="text" value="San Francisco(SFO)"></td></tr>
+                                <tr><td>Departure Date:</td><td><input id="DepartureTime" name="DepartureTime" type="text" value="<?php echo date('Y-m-d',strtotime("+1 day"));?>T07:00"></td></tr>
+                                <tr><td>Arrival Date:</td><td><input id="ArrivalTime" name="ArrivalTime" type="text" value="<?php echo date('Y-m-d',strtotime("+1 day"));?>T10:22"></td></tr>
+                                <tr><td>To:</td><td><select id="class" name="class"><option value="T">Economic</option><option value="Z">Business</option></select></td></tr>
+                                <tr><td colspan="2" align="right"><input type="button" id="searchBtn" value="Go"></td></tr>
+                              </table>
+                      </form>
+                    </div>
+                  </div>
+                  <div id="dyn"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td align="left" valign="top" >
+          <div style="position:relative;">
+            <div id="loading" style="display:none;position:absolute;padding:13px 15px 0px;background-color:#FFFF80;border:1px solid #C9CC57;top:233px;right:228px;z-index:9999;height:30px;">Loading...</div>
+            <div id="privacy"></div>
+            <div id="flightchart">
+            <table width="98%" height="565" border="0" cellpadding="0" cellspacing="0" class="border1">
+              <tr>
+                <td width="74%" valign="top">
+                  <div style="overflow:auto;height:560px;width:420px;" id="flightseats">
+                  <img src="<?php echo $this->baseUrl(); ?>/public/images/ANZ_A320.jpg">
+                  </div>
+                  
+                </td>
+                <td width="26%" align="center" valign="top">
+                  <p draggable="true"><img src="<?php echo $this->baseUrl(); ?>/public/images/right-icon1.png" width="72"></p>
+                  <p draggable="true"><img src="<?php echo $this->baseUrl(); ?>/public/images/right-icon2.png" width="72"></p>
+                  <p draggable="true"><img src="<?php echo $this->baseUrl(); ?>/public/images/right-icon3.png" width="73"></p>
+                  <p draggable="true"><img src="<?php echo $this->baseUrl(); ?>/public/images/right-icon4.png" width="73" height="60"><br/><span style="text-align: center;font-weight: bold;">Mileage</span></p>
+                  <p draggable="true"><img style="cursor: pointer;" title="See Nearest hotels" id="hotelSearch" alt="hotels" src="<?php echo $this->baseUrl(); ?>/public/images/right-icon6.png" width="73" height="80"><br/><span style="text-align: center;font-weight: bold;">Hotels</span></p>
+                  <p draggable="true"><img style="cursor: pointer;" title="Cabs & Taxis" id="cabSearch" alt="cabs taxis" src="<?php echo $this->baseUrl(); ?>/public/images/right-icon7.png" width="73"></p>
+                </td>
+              </tr>
+            </table>
+            </div>
+          </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" align="left" valign="top">&nbsp;</td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<script>
+(function($){
+    $.fn.outside = function(ename, cb){
+        return this.each(function(){
+            var $this = $(this),
+                self = this;
+
+            $(document).bind(ename, function tempo(e){
+                if(e.target !== self && !$.contains(self, e.target)){
+                    cb.apply(self, [e]);
+                    if(!self.parentNode) $(document.body).unbind(ename, tempo);
+                }
+            });
+        });
+    };
+}(jQuery));
+$(document).outside('click', function() {
+    $('.userTip').stop(true, true).hide();
+});
+$(document).ready(function(){
+  $('#header').css('position','relative');
+  $('#footer').css('position','relative');
+  $('#searchBtn').click(function(){
+      var url = '<?php echo $this->baseUrl(); ?>/search/seatsinflight'
+      $.ajax({
+        type:'POST',
+        url:url,
+        data:$('#search').serialize(),
+        beforeSend:function(){$('#loading').show();},
+        success:function(response){
+          $('#flightchart').show();
+          $('#privacy').hide();
+          $('#loading').hide();
+          $('#flightseats').html(response);
+          getPeopleonSameFlight();
+        },
+        error:function(){
+          $('#loading').hide();
+        }
+      });
+  });
+  
+  $('#pnrBtn').click(function(){
+      var url = '<?php echo $this->baseUrl(); ?>/search/pnrdetails'
+      $.ajax({
+        type:'POST',
+        url:url,
+        data:$('#search2').serialize(),
+        beforeSend:function(){$('#loading').show();},
+        success:function(response){
+          $('#flightchart').show();
+          $('#privacy').hide();
+          $('#loading').hide();
+          $('#flightseats').html(response);
+          getPeopleonSameFlight();
+        },
+        error:function(){
+          $('#loading').hide();
+        }
+      });
+  });
+  $('#cabSearch').click(function(){
+        //$('#dyn').append('<img src="<?php echo $this->baseUrl();?>/public/images/">'); 
+      $.ajax({
+        type:'POST',
+        data:'t=taxi',
+        url:'<?php echo $this->baseUrl().'/search/taxis'?>',
+        success:function(response){
+          $('.submenu').slideUp();
+          $('#dyn').html(response);
+        }
+      });
+  });
+  $('#hotelSearch').click(function(){
+      $('.submenu').slideUp();
+      var destCode = $('#destCode');
+      if(destCode.val() != undefined){
+        var url = '<?php echo $this->baseUrl().'/search/hotelmap/?';?>'+'destCode='+destCode.val()+'&flightArrival='+$('#flightarrival').val()+'&flightDeparture='+$('#flightdeparture').val();
+        var ifrm = document.createElement("IFRAME");
+        ifrm.setAttribute("src", "<?php echo $this->baseUrl().'/search/hotelmap/?';?>"+'destCode='+destCode.val()+'&flightArrival='+$('#flightarrival').val()+'&flightDeparture='+$('#flightdeparture').val());
+        ifrm.setAttribute("id", "_map");
+        ifrm.style.width = "100%";
+        ifrm.style.height = "100%";
+        ifrm.style.border = '0';
+        
+        $('#dyn').html('');
+        $('#dyn').css('overflow','hidden');
+        $('#dyn').css('width','100%');
+        $('#dyn').css('height','375px');
+        $('#dyn').append(ifrm);
+        /*$.ajax({
+          type:'POST',
+          url:'<?php echo $this->baseUrl().'/search/hotelmap';?>',
+          data:'destCode='+destCode.val()+'&flightArrival='+$('#flightarrival').val()+'&flightDeparture='+$('#flightdeparture').val(),
+          success:function(response){
+            $('#dyn').html(response);
+          }
+        });*/
+      } else {
+        alert('Please search flight before look up for hotels ');
+      }
+  });
+  
+});
+  function getPeopleonSameFlight(){
+      var url = "<?php echo $this->baseUrl().'/search/peopleonflight';?>";
+      var flightNumber = $('#flightNumber').val();
+      var flightDepart = $('#flightdeparture').val();
+      if(flightNumber.length > 0){
+        $.ajax({
+          type:'POST',
+          url:url,
+          data:'flight='+escape(flightNumber)+'&departure='+escape(flightDepart),
+          success:function(response){
+            $('#dyn').html(response);
+            $('.submenu').slideUp();
+          }
+        });
+      }
+  }
+  function seatMap(seatNumber,e){
+    $('.userTip').hide();
+    $('#'+seatNumber+' .userTip').show();
+    //e.stopPropagation();
+    //$('div:not(.userTip)').click(function(){$('div.userTip').hide()});
+  }
+  function getPrivacy(f,s){
+      var url = "<?php echo $this->baseUrl().'/search/usersettings';?>";
+      $.ajax({
+        type:'GET',
+        url:url,
+        data:'flight='+escape(f)+'&seat='+escape(s)+'&departure='+$('#flightdeparture').val(),
+        success:function(response){
+          //$('#flightchart').slideLeft();
+          $('#flightchart').hide();
+          $('#privacy').html(response);
+          $('#privacy').show();
+        }
+      });
+  }
+  function setPrivacy(){
+      var url = "<?php echo $this->baseUrl().'/search/usersettings/';?>";
+      $.ajax({
+        type:'POST',
+        url:url,
+        data:$('#privacyFrm').serialize(),
+        success:function(response){
+          $('#flightchart').show();
+          $('#privacy').hide();
+          //getPeopleonSameFlight();
+        }
+      });
+  }
+</script>

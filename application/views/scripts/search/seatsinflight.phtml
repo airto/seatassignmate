@@ -1,0 +1,130 @@
+<style>
+  .seat{
+    color:#fff;
+  }
+  .userTip{
+    display:none;
+    left: 13px;
+    position: absolute;
+    top: -108px;
+    z-index: 9999;
+  }
+</style>
+<?php
+$tooltips = '<div class="userTip">
+                <table>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+            </div>';
+?>
+<div class="plane-container">
+<input type="hidden" name="flightNumber" id="flightNumber" value="<?php echo $this->flightNumber; ?>">
+<input type="hidden" value="<?php echo $this->departure; ?>" id="flightdeparture" name="flightdeparture">
+<input type="hidden" value="<?php echo $this->arrival; ?>" id="flightarrival" name="flightarrival">
+<input type="hidden" name="destCode" id="destCode" value="<?php echo $this->destination; ?>">
+	<?php
+                        if(isset($this->seats['SeatRow'])){
+			?>
+                        <table id="tseats" style="overflow: auto;height: auto; width:100%;">
+                        <?php
+			    if($this->seats['CabinClass'] == 'Economy'){
+				    echo '<tr><td colspan="8">'.$this->render('search/business-dummy.phtml').'</td></tr>';
+			    }
+                            foreach($this->seats['SeatRow'] as $key=>$seatRow){
+				  
+				?>
+				
+                                <tr>
+				<?php
+				$fbFlag = FALSE;
+                                foreach($seatRow['Seats'] as $rowFacilityChars){
+				    ?>
+				    <td style="border:0px;"><?php
+				    $seat = '';
+                                    if($rowFacilityChars['Facility']['Type'] == 'Seat'){
+				      $seatAvail = false;
+                                      if($rowFacilityChars['Facility']['Availability']=='Occupied'){
+                                         $seatcolor = '#7753F3';
+                                      } else if($rowFacilityChars['Facility']['Availability']=='Reserved'){
+                                        $seatcolor = '#00FF00';
+                                      } else {
+                                        $seatAvail = true;
+					$seatcolor = '#F3F003';
+                                      }
+				      
+                                        $seat = '<span id="'.$rowFacilityChars['Facility']['SeatCode'].'" class="'.$this->seats['CabinClass'].'" style="font-size:8px;position: relative;cursor:pointer;" >';
+	
+			if(isset($this->seatOccupier["{$rowFacilityChars['Facility']['SeatCode']}"])){
+                            $onclick='onclick="javascript:seatMap(\''.$rowFacilityChars['Facility']['SeatCode'].'\',event);"';
+			    if($this->seats['CabinClass'] == 'Economy'){
+					$seat .= '<img '.$onclick.' width="22" height="25" src="'.$this->baseUrl().'/public/images/economic_seat.jpg'.'" Title=" Seat is '.$rowFacilityChars['Facility']['Availability'].'">';
+					$vImg = 'economy1.jpg';
+			    } else {
+				$seat .= '<img '.$onclick.' src="'.$this->baseUrl().'/public/images/business_seat.jpg'.'">';
+					$vImg = 'business1.jpg';
+			    }
+			    $seat .= $this->seatOccupier["{$rowFacilityChars['Facility']['SeatCode']}"];
+			    $fbFlag = TRUE;
+                        } else  {
+			    //if($seatAvail){
+				$onclick='onclick="javascript:getPrivacy(\''.$this->flightNumber.'\',\''.$rowFacilityChars['Facility']['SeatCode'].'\');"';
+			    //} else {
+				//$onclick = "onclick=\"javascript:alert('This seat is {$rowFacilityChars['Facility']['Availability']}');\"";
+			    //}
+			    if($this->seats['CabinClass'] == 'Economy'){
+					$seat .= '<img '.$onclick.' width="22" height="25" src="'.$this->baseUrl().'/public/images/economic_seat.jpg'.'" Title=" Seat is '.$rowFacilityChars['Facility']['Availability'].'">';
+					$vImg = 'economy1.jpg';
+				      } else {
+					$seat .= '<img '.$onclick.' src="'.$this->baseUrl().'/public/images/business_seat.jpg'.'">';
+					$vImg = 'business1.jpg';
+				      }
+                            $seat .= '<div class="chair-light-box">
+                                            <ol>
+                                            <li class="black-heading">'.$this->seats['CabinClass'].' Class</li>
+                                            <li class="sub-heading">Seat#:'.$rowFacilityChars['Facility']['SeatCode'].', '.$rowFacilityChars['Facility']['Availability'].' seat</li>
+                                            <li class="img-row">
+					      <table width="100%">
+						<tr>
+						<td valign="top"><span style="color:#ccc;font-weight:bold;font-size:20px">'.str_replace('-','',$rowFacilityChars['Facility']['SeatCode']).'</span></td>
+						<td><img src="'.$this->baseUrl().'/public/images/'.$vImg.'"></td></tr>
+					      </table>
+					    </li>
+                                        </ol>
+                                    </div>';
+                        }
+                        $seat .= '</span>';
+			                            echo $seat;
+
+                                    } else if($rowFacilityChars['Facility']['Type'] == 'Aisle'){
+                                        echo '<span>&nbsp;&nbsp;<span>';
+                                    }
+                                    ?></td><?php
+                                }
+                                ?>
+				<td >
+				<?php if($fbFlag == TRUE){ ?>
+				<div style="position:relative;"><div style="position:absolute;right:225px;top:-13px;"><img src="<?php echo $this->baseUrl().'/public/images/fb-flag.jpg';?>"></div></div>
+				<?php } ?>
+				</td>
+				</tr>
+                                <?php
+                            }
+			    if($this->seats['CabinClass'] != 'Economy'){
+				    echo '<tr><td colspan="6">'.$this->render('search/economy-dummy.phtml').'</td></tr>';
+			    }
+                        ?>
+                        </table>
+                        <?php
+                        } else {
+			  ?>
+			    <table id="tseats" style="overflow: auto;height: auto; width:100%;">
+			      <?php echo '<tr><td colspan="6">'.$this->render('search/business-dummy.phtml').'</td></tr>';?>
+			      <?php echo '<tr><td colspan="6">'.$this->render('search/economy-dummy.phtml').'</td></tr>';?>
+			    </table>
+			  <?php
+			} 
+                      ?>
+</div>

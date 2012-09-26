@@ -1,0 +1,38 @@
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 100%;
+}
+body {
+	background-image: url(<?php echo $this->baseUrl(); ?>/public/images/bg.jpg);
+	background-repeat: repeat-x;
+	background-color: #FFF;
+}
+.style2 {
+	font-size: large;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+-->
+</style>
+<div class="centered"><p style="text-align: center;"><span>Please wait... </span><span style="text-align: center;"><img src="<?php echo $this->baseUrl().'/public/images/loading.png'; ?>"></span></p></div>
+<table width="960" border="0" align="center" cellpadding="0" cellspacing="0" class="border2">
+  <tr>
+    <td height="105" colspan="2" align="center" valign="middle"><p class="style2"><img src="<?php echo $this->baseUrl(); ?>/public/images/title.png" width="900" height="63"></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="158" height="492" align="center" valign="middle"><table width="90%" border="0" cellspacing="1" cellpadding="1">
+      <tr>
+        <td height="51" align="center"><strong>Login Now </strong></td>
+      </tr>
+      <tr>
+        <td height="95" align="center"><a id="fb-login" href="javascript:void(0);"><img src="<?php echo $this->baseUrl(); ?>/public/images/icon-fb.png" width="93" height="93" border="0"></a></td>
+      </tr>
+      <tr>
+        <td height="118" align="center"><a id="in-login" href="<?php echo $this->baseUrl().'/login';?>"><img src="<?php echo $this->baseUrl(); ?>/public/images/icon-linkedin.png" width="95" height="95" border="0"></a></td>
+      </tr>
+    </table></td>
+    <td width="889" align="center" valign="middle"><img src="<?php echo $this->baseUrl(); ?>/public/images/airplain.png" width="846" height="330"></td>
+  </tr>
+</table>

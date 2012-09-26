@@ -1,0 +1,78 @@
+ <table width="460" height="570" border="0" cellpadding="0" cellspacing="0" class="border1">
+              <tr>
+                <td width="452" align="center" valign="top" bgcolor="#D5EBF7"><p>&nbsp;</p>
+                  <form method="post" id="privacyFrm">
+		  <input type="hidden" name="flightNumber" value="<?php echo $this->flightNumber; ?>">
+		  <input type="hidden" name="seatNumber" value="<?php echo $this->seatNumber; ?>">
+		  <input type="hidden" name="departure" value="<?php echo $this->departure; ?>">
+		  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td width="32%" height="77" align="center"><img src="<?php echo $this->baseUrl(); ?>/public/images/icon-fb.png" width="121" height="121"></td>
+                    <td width="68%" colspan="2" rowspan="2" align="center" valign="top">
+		    <table width="98%" border="0" align="right">
+                      <tr>
+                        <td width="58%" height="30" align="left"><input type="checkbox" name="privacy[firstName]" id="firstName">
+                          First Name</td>
+                        <td width="42%" height="30"><input type="checkbox" name="privacy[lastName]" id="lastName">
+                          Last name </td>
+                      </tr>
+                      <tr>
+                        <td height="30" align="left"><input type="checkbox" name="privacy[college]" id="college">
+                          University/College</td>
+                        <td height="30"><input type="checkbox" name="privacy[company]" id="company">
+                          Company</td>
+                      </tr>
+                      <tr>
+                        <td height="30" align="left"><input type="checkbox" name="privacy[interest]" id="interest">
+                          Interests</td>
+                        <td height="30"><input type="checkbox" name="privacy[public_profile]" id="public_profile">
+                          Public Profile </td>
+                      </tr>
+                      <tr>
+                        <td height="30" align="left">&nbsp;</td>
+                        <td height="30">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td height="30" align="left">Travel reasons:</td>
+                        <td height="30"><input type="checkbox" name="privacy[travel_for_business]" id="travel_for_business">
+                          Business </td>
+                      </tr>
+                      <tr>
+                        <td height="30" align="left">Language:</td>
+                        <td height="30"><input type="checkbox" name="privacy[travel_for_vacation]" id="travel_for_vacation">
+                          Vacation </td>
+                      </tr>
+                      <tr>
+                        <td height="30" align="left"><select name="privacy[language]" size="1" id="language">
+                            <option>English</option>
+                            <option>French</option>
+                            <option>German</option>
+                            <option>Chinese</option>
+                            <option>Russian</option>
+                          </select></td>
+                        <td height="30">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td height="24" colspan="2" align="left">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td height="22" align="left">Comments:</td>
+                        <td valign="top">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td height="53" colspan="2" align="left"><textarea name="privacy[user_comment]" id="user_comment" cols="40" rows="8"></textarea>
+                          <br>
+				       <input name="Submit" type="button" onclick="javscript:setPrivacy();" value="Submit">
+			  </td>
+                        </tr>
+                    </table> </td>
+                  </tr>
+                  <tr align="center">
+                    <td height="272"><img src="<?php echo $this->baseUrl(); ?>/public/images/check-person.jpg" width="116" height="168"><br>
+                       
+					  <input name="privacy[profile_pic]" type="checkbox" id="profile_pic" checked>
+					  </td>
+                  </tr>
+                </table>   </form>               <p>&nbsp;</p></td>
+              </tr>
+          </table>
